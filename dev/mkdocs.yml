@@ -1,0 +1,16 @@
+site_name: Autonomiq Documentation
+nav:
+    - Home:
+        - Intro: index.md
+        - Supporting Features:
+            - Command: commands.md
+            - Jenkins: jenkins.md
+    - Getting Started:
+        - FAQ: faq.md
+    - About:
+        - Release Note: release-notes.md
+    - Download:
+        - Releases: releases.md
+        - Reference Doc: reference.md
+theme:
+  name: readthedocs
