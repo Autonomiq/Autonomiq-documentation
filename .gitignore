@@ -1,0 +1,6 @@
+syntax:glob
+*.py[cod]
+*.Python
+bin/
+lib/python3.6/site-packages/
+requirements.txt
