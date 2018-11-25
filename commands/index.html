@@ -165,12 +165,12 @@
 <p>NLP supports human understandable english, here is a general primer:</p>
 <h2 id="action-field">Action Field</h2>
 <ul>
-<li><em>open/launch/go to/navigate website [url]</em></li>
+<li><em>[open/launch/go to/navigate] website [url]</em></li>
 </ul>
-<pre><code>  `open website`     https://www.google.com
-  `launch website`   https://www.yahoo.com
-  `go to website`    https://www.linkedin.com
-  `navigate website` https://www.github.com
+<pre><code>  open website       https://www.google.com
+  launch website     https://www.yahoo.com
+  go to website      https://www.linkedin.com
+  navigate website   https://www.github.com
 </code></pre>
 
 <p>Those commands are exist for access given <code>website</code> address only
@@ -178,80 +178,298 @@
 <ul>
 <li><em>wait for {number} seconds</em></li>
 </ul>
-<pre><code>  'wait for 1 secs'
-  'wait for 5 seconds'
-  'wait 5 secs'
+<pre><code>  wait for 1 secs
+  wait for 5 seconds
+  wait 5 secs
 </code></pre>
 
 <p><code>wait for</code> command can be used when you want to control the waiting time manually</p>
 <ul>
-<li><em>Wait until element is visible/exists</em></li>
+<li><em>Wait until element is [visible/exists/not visible]</em></li>
 </ul>
-<pre><code>  'Wait until _xpath{&quot;//p[@class='productNumbers']&quot;} is visible'
-  'Wait until _xpath{&quot;//p[@class='productNumbers']&quot;} is exists'
+<pre><code>  Wait until _xpath{&quot;//p[@class='productNumbers']&quot;} is visible
+  Wait until _xpath{&quot;//p[@class='productNumbers']&quot;} is not visible
+  Wait until _xpath{&quot;//p[@class='productNumbers']&quot;} is exists
 </code></pre>
 
+<p>Our engine will wait until given element is coming up within DOM</p>
 <ul>
-<li><em>Wait until {xpath: "xpath"} is disabled/not visible</em></li>
-<li><em>verify {xpath: "xpath"} is [xpath]</em></li>
-<li><em>verify {xpath: "xpath"} [contains/begins with/ends with] [text]</em></li>
-<li><em>verify {xpath: "xpath"} [contains/begins with/ends with] [text] [or] [contains/begins with/ends with] (eg verify {xpath: "xpath" begins with [text] or ends with [text])</em></li>
-<li><em>verify {xpath: "xpath"} is [disabled/enabled/visible/not visible]</em></li>
-<li><em>verify the current url is [url] (eg verify the current url is https://www.test.com/)</em></li>
-<li><em>verify new window/tab/alert/pop up/pop-up exists</em></li>
-<li><em>verify {xpath: "xpath"} exist/exists</em></li>
-<li><em>verify {xpath: "xpath"} does not/doesnt/doesn't exists/exist</em></li>
-<li><em>switch to first/second/1/1st/2/2nd/3/3rd/original/new tab/window</em></li>
-<li><em>switch to alert/prompt/confirm and click on ok/accept/leave/cancel/stay</em></li>
-<li><em>switch to alert/prompt box and enter text and click on ok/accept/leave/cancel/stay</em></li>
-<li><em>use custom code from [location]</em></li>
-<li><em>click/press on/at [element text]</em></li>
-<li><em>click/press on/at [radio/checkbox] next to [element text]</em></li>
-<li><em>select/choose [element text]</em></li>
+<li><em>Wait until element is [disabled/enabled]</em></li>
+</ul>
+<pre><code>  Wait until _xpath{&quot;//p[@class='productNumbers'&quot;} is disabled
+  Wait until _xpath{&quot;//p[@class='productNumbers'&quot;} is enabled
+</code></pre>
+
+<p>Our engine can check the status of element which could be switched like <code>Switch</code> HTML tag</p>
+<ul>
+<li><em>Verify element is element</em></li>
+</ul>
+<pre><code>  Verify _xpath{&quot;//div[@class='App']&quot;} is _xpath{&quot;//div[@class='App']&quot;}
+  Verify _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;} is _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;}
+  Verify _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;} is _xpath{&quot;//div[@class='App']&quot;}
+  Verify _xpath{&quot;//div[@class='App']&quot;} is _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;}
+</code></pre>
+
+<p>Our engine is able to compare the 2 given element by using above <code>Verify</code> command</p>
+<ul>
+<li><em>Verify element [contains/begins with/ends with] [text]</em></li>
+</ul>
+<pre><code>  Verify _xpath{&quot;//div[@class='App']&quot;} contains 'sample'
+  Verify _xpath{&quot;//div[@class='App']&quot;} begins with 'sample'
+  Verify _xpath{&quot;//div[@class='App']&quot;} ends with 'sample'
+</code></pre>
+
+<p>Our engine is able to check whether given element has specific text if the a given element has text</p>
+<ul>
+<li><em>Verify element [contains/begins with/ends with] [text] [or] [contains/begins with/ends with]</em></li>
+</ul>
+<pre><code>  Verify _xpath{&quot;//div[@class='App']&quot;} begins with 'auto' or ends with 'nomiq'
+</code></pre>
+
+<p>Text include verification syntax like previous command could be implemented continuously with <code>or</code> syntax</p>
+<ul>
+<li><em>Verify the current url is [url]</em></li>
+</ul>
+<pre><code>  Verify the current url is 'https://www.test.com/'
+</code></pre>
+
+<p>Check the url which currently in with browser whether is same with given url</p>
+<ul>
+<li><em>Verify new [window/tab/alert/pop up/pop-up] exists</em></li>
+</ul>
+<pre><code>  Verify new window exists
+  Verify new tab exists
+  Verify new alert exists
+  Verify new pop up exists
+  Verify new pop-up exists
+</code></pre>
+
+<p>Check if new <code>window</code> or <code>alert</code> or <code>tab</code> or <code>pop up</code> is coming up upon existing window</p>
+<ul>
+<li><em>Verify element [exist/exists]</em></li>
+</ul>
+<pre><code>  Verify _xpath{&quot;//div[@class='App']&quot;} exist
+  Verify _xpath{&quot;//div[@class='App']&quot;} exists
+</code></pre>
+
+<p>Check whether given element is exist on current DOM or not</p>
+<ul>
+<li><em>Verify element [does not/doesnt/doesn't] [exists/exist]</em></li>
+</ul>
+<pre><code>  Verify _xpath{&quot;//div[@class='App']&quot;} does not exists
+  Verify _xpath{&quot;//div[@class='App']&quot;} doesn't exists
+  Verify _xpath{&quot;//div[@class='App']&quot;} doesnt exists
+</code></pre>
+
+<p>Check whether given element is exist on current DOM or not</p>
+<ul>
+<li><em>Switch to [first/second/1/1st/2/2nd/3/3rd/original/new] [tab/window]</em></li>
+</ul>
+<pre><code>  Switch to first tab
+  Switch to second tab
+  Switch to 1 tab
+  Switch to 1st tab
+  Switch to 2 tab
+  Switch to 2nd tab
+  Switch to 3 tab
+  Switch to 3rd tab
+  Switch to original tab
+  Switch to new tab
+</code></pre>
+
+<p>Our engine can switch the context of window if the new <code>tab</code> or <code>window</code> is coming up</p>
+<ul>
+<li><em>Switch to [alert/prompt/confirm] and click on [ok/accept/leave/cancel/stay]</em></li>
+</ul>
+<pre><code>  Switch to alert and click on ok
+  Switch to prompt and click on cancel
+  Switch to confirm and click on accept
+</code></pre>
+
+<p>Our engine can switch the context of window and also do an Actions that <code>prompt</code> has</p>
+<ul>
+<li><em>Switch to [alert/prompt] box and enter [text] and click on [ok/accept/leave/cancel/stay]</em></li>
+</ul>
+<pre><code>  Switch to alert box and enter 'first name' and click on cancel
+</code></pre>
+
+<p>Our engine can do continuous Action regarding what procedure the prompt window has</p>
+<ul>
+<li><em>Use custom code from [FileName]</em></li>
+</ul>
+<pre><code>  Use custom code from MyCustomCode
+</code></pre>
+
+<p>FileName field is going to filled with file name without extension name like <code>.java</code>
+ <em>note that the file should be stored into AutonomiQ minio server prior to use in Test case</em></p>
+<ul>
+<li><em>[click/press] [on/at] [element]</em></li>
+</ul>
+<pre><code>  Click on 'Submit'
+  Press on 'Cancel'
+  Click at 'Submit'
+  Press at 'Cancel'
+</code></pre>
+
+<p>Our engine is able to do Action with not only <code>element text</code> but also <code>element _xpath</code></p>
+<ul>
+<li><em>[click/press] [on/at] [radio/checkbox] next to [element text]</em></li>
+</ul>
+<pre><code>  Click on radio next to      'California'
+  Click at checkout next to   'California'
+  Press on radio next to      'California'
+  Press at checkout next to   'California'
+</code></pre>
+
+<p>Our engine can verify the <code>radio</code> or <code>checkbox</code> which located beside text element like Below</p>
+<ul>
+<li><em>Select/choose [element text]</em></li>
+</ul>
+<pre><code>  Select  'California'
+  Choose  'California'
+</code></pre>
+
+<p>This command could be implemented when the DOM has <code>Select</code> tag for select one element from various option</p>
+<ul>
 <li><em>Upload file to [field]</em></li>
-<li><em>hover over/on [field]</em></li>
-<li><em>enter/type in/fill in/set text in [field]</em></li>
-<li><em>set screen/window size - <width> * <height></em></li>
 </ul>
+<pre><code>  Upload file to 'Upload xlsx file'
+</code></pre>
+
+<p>This command could be implemented when the website require file uploading step in order to testing functionality
+<em>note that this command require artifact file which supposed to be uploaded as file by this command</em></p>
+<ul>
+<li><em>Hover [over/on] element</em></li>
+</ul>
+<pre><code>  Hover over 'user name'
+  Hover on   'user name'
+</code></pre>
+
+<p>This command is needed when user need to check the elements when we hover over the cursor on given element not by <code>Click</code></p>
+<ul>
+<li><em>[Enter/type in/fill in/set] text in [field]</em></li>
+</ul>
+<pre><code>  Enter 'John Doe' in user name
+  Type in 'John Doe' in user name
+  Fill in 'John Doe' in user name
+  Set 'John Doe' in user name
+</code></pre>
+
+<p>Our engine is able to find the element by text in order to do <code>Action</code> on that element</p>
+<ul>
+<li><em>Set screen/window size - <width> * <height></em></li>
+</ul>
+<pre><code>  Set screen size - 1024 * 768
+</code></pre>
+
+<p>This command can change the size of window, especially useful when user's website has different element variation when change the resolution</p>
 <hr />
 <ul>
-<li><em>"Create random variable <var_name>" for a random alphanumeric string</em></li>
-<li><em>save {xpath: "xpath"} as <variable_name></em></li>
-<li><em>save [element text] as <variable_name></em></li>
-<li><em><action> and save it as <variable_name></em></li>
-<li><em>${variable_name} to reference a previously saved variable</em></li>
+<li><em>Create random variable [var_name]</em></li>
 </ul>
-<hr />
+<pre><code>  Create random variable password
+</code></pre>
+
+<p>This command is going to generate random alphanumeric string for checking field's restriction like <code>password</code> field</p>
 <ul>
-<li><em>{today, <format>} to get today's date in the specified format</em></li>
-<li><em>{today, dd/mm/yy} to get today's date in the specified format</em></li>
-<li><em>{today, mm/dd/yy} to get today's date in the specified format</em></li>
-<li><em>{today, yy/mm/dd} to get today's date in the specified format</em></li>
+<li><em>Save element as [variable_name]</em></li>
 </ul>
+<pre><code>  Save _xpath{&quot;//div[@class='App']&quot;} as first_value
+</code></pre>
+
+<p>This command is going to store the given element's data if given element has value on it
+<em>note that this command can store multiple value which separated with comma in one variable from table element</em></p>
+<ul>
+<li><em>Save [element text] as [variable_name]</em></li>
+</ul>
+<pre><code>  Save user name as user_id
+</code></pre>
+
+<p><code>Save</code> command also able to store the value from text based element</p>
+<ul>
+<li><em>[action] and save it as [variable_name]</em></li>
+</ul>
+<pre><code>  Enter username and save it as user_id
+</code></pre>
+
+<p>This command is going to enable to reuse the same value as data into another step by storing as variable</p>
 <hr />
 <ul>
 <li><em>begin block [block_name]</em></li>
 <li><em>[some instructions]</em></li>
 <li><em>end block</em></li>
 </ul>
+<pre><code>  begin block create_value
+  Create random variable password
+  end block
+</code></pre>
+
+<p>Saved block could be used with calling the name of block as same as saved variable in this case <code>${create_value}</code></p>
 <hr />
 <ul>
 <li><em>using for loop</em></li>
 <li><em>run ${block name} for [number] times</em></li>
 <li><em>run ${block name} for all rows</em></li>
 </ul>
-<hr />
-<hr />
+<pre><code>  using for loop
+  run ${click_button} for 5 times
+</code></pre>
+
+<pre><code>  using for loop
+  run ${save_value} for all rows
+</code></pre>
+
+<p>This command is useful when user should check same action but multiple time at one time
+<em>This will shorten the length of test step obviously</em></p>
 <hr />
 <h2 id="data-field">Data Field</h2>
 <ul>
-<li><em>{Today, MM/dd/yyyy}</em></li>
+<li><em>${variable_name} to reference a previously saved variable</em></li>
+<li><em>{Today, <format>}</em></li>
+</ul>
+<pre><code>  {Today, dd/mm/yy}
+  {Today, mm/dd/yy}
+  {Today, yy/mm/dd}
+</code></pre>
+
+<p>This format is enable to get today's date in the specified format
+<em>note that you can use yyyy format rather than yy like below</em>
+<em>{Today, MM/dd/yyyy}</em></p>
+<ul>
 <li><em>{Today + 2{dd}, MM/dd/yyyy}</em></li>
+</ul>
+<pre><code>  {Today + 2{dd}, MM/dd/yyyy}
+</code></pre>
+
+<p>As of today <code>(11/24/2018)</code>, expected result is <code>(11/26/2018)</code></p>
+<ul>
 <li><em>{Today - 2{dd}, MM/dd/yyyy}</em></li>
+</ul>
+<pre><code>  {Today - 2{dd}, MM/dd/yyyy}
+</code></pre>
+
+<p>As of today <code>(11/24/2018)</code>, expected result is <code>(11/22/2018)</code></p>
+<ul>
 <li><em>{Today - 1{mm}, MM/dd/yyyy}</em></li>
+</ul>
+<pre><code>  {Today - 1{mm}, MM/dd/yyyy}
+</code></pre>
+
+<p>As of today <code>(11/24/2018)</code>, expected result is <code>(10/24/2018)</code></p>
+<ul>
 <li><em>{Today - 1{yy}, MM/dd/yyyy}</em></li>
+</ul>
+<pre><code>  {Today - 1{yy}, MM/dd/yyyy}
+</code></pre>
+
+<p>As of today <code>(11/24/2018)</code>, expected result is <code>(11/24/2017)</code></p>
+<ul>
 <li><em>{Today + 1{yy}, MM/dd/yyyy}</em></li>
 </ul>
+<pre><code>  {Today + 1{yy}, MM/dd/yyyy}
+</code></pre>
+
+<p>As of today <code>(11/24/2018)</code>, expected result is <code>(11/24/2019)</code></p>
               
             </div>
           </div>
