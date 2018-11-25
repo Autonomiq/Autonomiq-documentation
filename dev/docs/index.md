@@ -2,9 +2,9 @@
 
 For full documentation visit [autonomiq.github.io](https://autonomiq.github.io).
 
-##Which AutonomiQ can help you?
+##Which part AutonomiQ can help you?
 
-####AutonomiQ is an autonomous platform that automates every step fo the testing life-cycle from test case creation to impact analysis.
+####AutonomiQ is an autonomous platform that automates every step for the testing life-cycle from test case creation to impact analysis.
 
 ![Testing Image](website-testing.jpg)
 
