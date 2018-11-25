@@ -107,7 +107,7 @@ Check whether given element is exist on current DOM or not
 
 ```
   Verify _xpath{"//div[@class='App']"} does not exists
-  Verify _xpath{"//div[@class='App']"} doesn't exists
+  Verify _xpath{"//div[@class='App']"} `doesn't` exists
   Verify _xpath{"//div[@class='App']"} doesnt exists
 ```
 
