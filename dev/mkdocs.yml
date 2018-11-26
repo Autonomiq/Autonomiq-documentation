@@ -1,4 +1,7 @@
 site_name: Autonomiq Documentation
+repo_url: https://github.com/seounghanSong/Autonomiq-documentation.git
+site_favicon: img/favicon.ico
+
 nav:
     - Home:
         - Intro: index.md
