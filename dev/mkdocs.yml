@@ -1,5 +1,7 @@
 site_name: Autonomiq Documentation
-repo_url: https://github.com/seounghanSong/Autonomiq-documentation.git
+site_description: Autonomiq documentation with Markdown.
+repo_url: https://github.com/seounghanSong/Autonomiq-documentation/
+edit_uri: https://github.com/seounghanSong/Autonomiq-documentation/tree/master/dev/docs
 site_favicon: img/favicon.ico
 
 nav:
@@ -17,3 +19,6 @@ nav:
         - Reference Doc: reference.md
 theme:
   name: readthedocs
+
+plugins:
+    - search
