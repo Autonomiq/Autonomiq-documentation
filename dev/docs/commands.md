@@ -48,8 +48,6 @@ Our engine can check the status of element which could be switched like `Switch`
 * *Verify element is element*
 
 ```
-  Verify _xpath{"//div[@class='App']"} is _xpath{"//div[@class='App']"}
-  Verify _css{"body:nth-child(6) div:nth-child(2) > div.App"} is _css{"body:nth-child(6) div:nth-child(2) > div.App"}
   Verify _css{"body:nth-child(6) div:nth-child(2) > div.App"} is _xpath{"//div[@class='App']"}
   Verify _xpath{"//div[@class='App']"} is _css{"body:nth-child(6) div:nth-child(2) > div.App"}
 ```
@@ -157,6 +155,19 @@ Our engine can do continuous Action regarding what procedure the prompt window h
  FileName field is going to filled with file name without extension name like `.java`
  *note that the file should be stored into AutonomiQ minio server prior to use in Test case*
 
+* *REST API calls*
+
+
+ Curl syntax is support for REST api calls and results can be saved to variables
+
+
+```
+  _api{-X "PUT"/"GET"/"POST"  -d ${data} -H "{"Content-Type": "application/json"}"  "https://google.com"}
+  save _api{-X "PUT"  -d ${data} -H "{"Content-Type": "application/json"}"  "https://google.com"} as "result" will store the result as variable result (accessible as $result)
+```
+
+Our engine is able to do Action with not only `element text` but also `element _xpath` or `element _css`
+
 * *[click/press] [on/at] [element]*
 
 ```
@@ -166,7 +177,7 @@ Our engine can do continuous Action regarding what procedure the prompt window h
   Press at 'Cancel'
 ```
 
-Our engine is able to do Action with not only `element text` but also `element _xpath`
+Our engine is able to do Action with not only `element text` but also `element _xpath` or `element _css`
 
 * *[click/press] [on/at] [radio/checkbox] next to [element text]*
 
