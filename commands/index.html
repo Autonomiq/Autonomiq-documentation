@@ -208,9 +208,7 @@
 <ul>
 <li><em>Verify element is element</em></li>
 </ul>
-<pre><code>  Verify _xpath{&quot;//div[@class='App']&quot;} is _xpath{&quot;//div[@class='App']&quot;}
-  Verify _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;} is _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;}
-  Verify _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;} is _xpath{&quot;//div[@class='App']&quot;}
+<pre><code>  Verify _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;} is _xpath{&quot;//div[@class='App']&quot;}
   Verify _xpath{&quot;//div[@class='App']&quot;} is _css{&quot;body:nth-child(6) div:nth-child(2) &gt; div.App&quot;}
 </code></pre>
 
@@ -307,6 +305,15 @@
 <p>FileName field is going to filled with file name without extension name like <code>.java</code>
  <em>note that the file should be stored into AutonomiQ minio server prior to use in Test case</em></p>
 <ul>
+<li><em>REST API calls</em></li>
+</ul>
+<p>Curl syntax is support for REST api calls and results can be saved to variables</p>
+<pre><code>  _api{-X &quot;PUT&quot;/&quot;GET&quot;/&quot;POST&quot;  -d ${data} -H &quot;{&quot;Content-Type&quot;: &quot;application/json&quot;}&quot;  &quot;https://google.com&quot;}
+  save _api{-X &quot;PUT&quot;  -d ${data} -H &quot;{&quot;Content-Type&quot;: &quot;application/json&quot;}&quot;  &quot;https://google.com&quot;} as &quot;result&quot; will store the result as variable result (accessible as $result)
+</code></pre>
+
+<p>Our engine is able to do Action with not only <code>element text</code> but also <code>element _xpath</code> or <code>element _css</code></p>
+<ul>
 <li><em>[click/press] [on/at] [element]</em></li>
 </ul>
 <pre><code>  Click on 'Submit'
@@ -315,7 +322,7 @@
   Press at 'Cancel'
 </code></pre>
 
-<p>Our engine is able to do Action with not only <code>element text</code> but also <code>element _xpath</code></p>
+<p>Our engine is able to do Action with not only <code>element text</code> but also <code>element _xpath</code> or <code>element _css</code></p>
 <ul>
 <li><em>[click/press] [on/at] [radio/checkbox] next to [element text]</em></li>
 </ul>
