@@ -182,7 +182,7 @@ Our engine is able to do Action with not only `element text` but also `element _
 * *[click/press] [on/at] [radio/checkbox] next to [element text]*
 
 ```
-  Click on radio next to      'California'
+  Click on radio next to      'Montana'
   Click at checkout next to   'California'
   Press on radio next to      'California'
   Press at checkout next to   'California'
