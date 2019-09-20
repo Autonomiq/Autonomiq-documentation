@@ -220,10 +220,9 @@ This command is needed when user need to check the elements when we hover over t
 * *[Enter/type in/fill in/set] text in [field]*
 
 ```
-  Enter 'John Doe' in user name
-  Type in 'John Doe' in user name
-  Fill in 'John Doe' in user name
-  Set 'John Doe' in user name
+  Enter text in user name  | John Doe
+  Type in user name   | ${var_first_name}
+  Fill in user name   | Mary Jane
 ```
 
 Our engine is able to find the element by text in order to do `Action` on that element
